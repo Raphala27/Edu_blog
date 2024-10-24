@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Accueil</a></li>
+            <li><a href="#categories">Catégories</a></li>
+            <li><a href="{{ url_for('create_article') }}">Créer un article</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <h1>Bienvenue sur mon blog</h1>
+        <h2>Articles récents</h2>
+        <ul class="article-list">
+            {% for article in articles %}
+                <li>
+                    <a href="{{ url_for('article', article_id=loop.index0) }}">{{ article.title }}</a> - {{ article.category }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mon Blog. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
